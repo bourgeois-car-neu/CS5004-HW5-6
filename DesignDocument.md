@@ -13,7 +13,45 @@ Include a UML class diagram of your initial design for this assignment. If you a
 ### Provided Code
 
 Provide a class diagram for the provided code as you read through it.  For the classes you are adding, you will create them as a separate diagram, so for now, you can just point towards the interfaces for the provided code diagram.
+```mermaid
+---
+title: BoardGame
+---
+classDiagram
+    direction LR
+    GameList --|> IGameList
+    Planner --|> IPlanner
+    class GameList {
+        + GameList()
+        + getGameNames() List<String>
+        + clear() void
+        + count() int
+        + saveGame(filename: String) void
+        + addToList(str: String, filtered: Stream<BoardGame>) void
+        + removeFromList(str: String) void
+    }
+    class IGameList {
+        <<interface>>
+        + ADD_ALL: String = "all"
+        + getGameNames() List
+        + count() int
+        
+    }
+    class Planner {
+        + Planner(games: Set<BoardGame>)
+        + filter(filter: String) Stream<BoardGame>
+        + filter(filter: String, sortOn: GameData) Stream<BoardGame>
+        + filter(filter: String, sortOn: GameData, ascending: boolean) Stream<BoardGame>
+        + reset() void
+    }
+    class IPlanner {
+        <<interface>>
+        + filter(filter: String) Stream
+        + filter(filter: String sortOn: GameData) Stream
+        + filter(filter: String, sortOn: GameData, ascending: boolean) Stream
 
+    }
+```
 
 
 ### Your Plans/Design
