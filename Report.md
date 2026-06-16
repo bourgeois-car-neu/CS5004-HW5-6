@@ -5,19 +5,23 @@ code as it is meant to help you understand some of the concepts.
 
 ## Technical Questions
 
-1. What is the difference between == and .equals in java? Provide a code example of each, where they would return different results for an object. Include the code snippet using the hash marks (```) to create a code block.
+1. What is the difference between == and .equals in java? Provide a code example of each, where they would return different results for an object. Include the code snippet using the hash marks (```) to create a code block. 
    ```java
-   // your code here
+   /**
+   *  == compares the location in memory 
+   * .equals() compares objects based on class definition of equality 
+   */
+   String s1 = new String("hello");
+   String s2 = new String("hello"):
+   
+   System.out.println(s1 == s2);        // false
+   System.out.println(s1.equals(s2));  // true
    
    ```
 
-
-
-
 2. Logical sorting can be difficult when talking about case. For example, should "apple" come before "Banana" or after? How would you sort a list of strings in a case-insensitive manner? 
-
-
-
+* "Banana" would come before "apple" because Java sorts strings case sensitively.
+* In a case insensitive manner, the list would be sorted alphabetically. If two words were the same like "apple" and "Apple", then they would appear in their original order.
 
 
 3. In our version of the solution, we had the following code (snippet)
@@ -38,21 +42,18 @@ code as it is meant to help you understand some of the concepts.
 
 
 4. What is the difference between a List and a Set in Java? When would you use one over the other? 
-
-
+* Lists allow duplicate elements and maintain the order they were added in. 
+* Sets don't allow duplicates and don't guarantee a specific order.
+* Use lists when duplicates are allowed, you want to order elements, and look up an element based on index. Use sets when uniqueness in the elements matter and you want faster look up speed.
 
 
 5. In GamesLoader.java, we use a Map to help figure out the columns. What is a map? Why would we use a Map here? 
-
-
-
+* A map is an interface that stores key value pairs so you can look up a specific value using a unique key. It's similar to a dictionary in python.
+* In GamesLoader.java the map is useful to separate the columns based on the header line with the contents of each column. The header line being the key and the column being the values.
 
 6. GameData.java is actually an `enum` with special properties we added to help with column name mappings. What is an `enum` in Java? Why would we use it for this application?
-
-
-
-
-
+* `enum` is used when you have a fixed set of predefined constants. It provides type safety by restricting the values. 
+* In GameData.java `enum` represent the columns in the game data. It makes it easier to access the column names from the CSV file, without needing to know the specific column names anywhere else.
 
 
 7. Rewrite the following as an if else statement inside the empty code block.
