@@ -131,7 +131,29 @@ classDiagram
 ### Your Plans/Design
 
 Create a class diagram for the classes you plan to create. This is your initial design, and it is okay if it changes. Your starting points are the interfaces. 
-
+```mermaid
+---
+title: BoardGame
+---
+classDiagram
+    direction LR
+    Planner --> FilterGames
+    Planner --> SortGames
+    
+    class Planner {
+        + Planner(games: Set<BoardGame>)
+        + filter(filter: String) Stream<BoardGame>
+        + filter(filter: String, sortOn: GameData) Stream<BoardGame>
+        + filter(filter: String, sortOn: GameData, ascending: boolean) Stream<BoardGame>
+        + reset() void
+    }
+    class FilterGames {
+        + filter(games: Stream<BoardGame>, filter: String) Stream<BoardGame>
+    }
+    class SortGames {
+        + sortOn(games: Stream<BoardGame>: String, sortOn: GameData, ascending: boolean) Stream<BoardGame>
+    }
+```
 
 
 
