@@ -21,6 +21,35 @@ classDiagram
     direction LR
     GameList --|> IGameList
     Planner --|> IPlanner
+    class BoardGame {
+        - name String
+        - id int
+        - minPlayers int
+        - maxPlayers int
+        - maxPlayTime int
+        - minPlayTime int
+        - difficulty double
+        - rank int
+        - averageRating double
+        - yearPublished int
+        + BoardGame(String, int x7, double x2)
+        + getName() String
+        + getId() int
+        + getMinPlayers() int
+        + getMaxPlayers() int
+        + getMaxPlayTime() int
+        + getMinPlayTime() int
+        + getDifficulty() double
+        + getRank() int
+        + getRating() double
+        + getYearPublished() int
+        + toStringWithInfo(col: GameData) String
+        + toString() String
+        + equals(obj: Object) boolean
+        + hashCode() int
+        + main(args: String) void
+    }
+    
     class GameList {
         + GameList()
         + getGameNames() List<String>
@@ -30,13 +59,7 @@ classDiagram
         + addToList(str: String, filtered: Stream<BoardGame>) void
         + removeFromList(str: String) void
     }
-    class IGameList {
-        <<interface>>
-        + ADD_ALL: String = "all"
-        + getGameNames() List
-        + count() int
-        
-    }
+    
     class Planner {
         + Planner(games: Set<BoardGame>)
         + filter(filter: String) Stream<BoardGame>
@@ -44,13 +67,60 @@ classDiagram
         + filter(filter: String, sortOn: GameData, ascending: boolean) Stream<BoardGame>
         + reset() void
     }
+
+    class Operations {
+        + operator String
+        - Operations(operator: String) operator
+        + getOperator() String
+        + fromOperator(operator: String) Operations
+        + getOperatorFromStr(str: String) Operations
+    }
+    
+    class GameData {
+        - columnName String
+        - GameData(columnName: String)
+        + getColumnName() String
+        + fromColumnName(columnName: String) GameData
+        + fromString(name: String) GameData
+    }
+    class GameLoader {
+        - GamesLoader()
+        + loadGamesFile(filename: String) Set<BoardGame>
+        - toBoardGame(line: String, columnMap Map<GameData, Integer>) BoardGame
+        - processHeader(header: String) Map<GameData, Integer>
+    }
+    
+    class ConsoleApp {
+        + ConsoleApp(gameList: IGameList, planner: IPlanner)
+        + start() void
+        - randomNumber() void
+        - processHelp() void
+        - processFilter() void
+        - printFilterStream(games: Stream<BoardGame>, sortON: GameData) void
+        - processListCommands() void
+        - printCurrentList() void
+        - nextCommand() ConsoleText
+        - remainder() String
+        - getInput(format: String, args: Object) String
+        - printOutput(format: String, args: Object) void
+        + toString() String
+        + fromString(str: String) ConsoleText
+        
+    }
     class IPlanner {
         <<interface>>
         + filter(filter: String) Stream
         + filter(filter: String sortOn: GameData) Stream
         + filter(filter: String, sortOn: GameData, ascending: boolean) Stream
-
     }
+
+    class IGameList {
+        <<interface>>
+        + ADD_ALL: String = "all"
+        + getGameNames() List
+        + count() int
+    }
+    
 ```
 
 
