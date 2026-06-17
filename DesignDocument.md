@@ -21,6 +21,10 @@ classDiagram
     direction LR
     GameList --|> IGameList
     Planner --|> IPlanner
+    IPlanner --> GameData : use
+    ConsoleApp --> IPlanner: use
+    ConsoleApp --> IGameList: use
+    BoardGame --> GameData : use
     class BoardGame {
         - name String
         - id int
