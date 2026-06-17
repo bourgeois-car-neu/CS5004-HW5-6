@@ -172,11 +172,33 @@ Write a test (in english) that you can picture for the class diagram you have cr
 
 You should feel free to number your brainstorm. 
 
-1. Test `getGameList()`from GameList 
+1. Test `getGameNames()`from GameList 
    * empty list returns empty list
    * adding names returns the list in ascending & alphabetical order
    * names with mixed cases are added in case insensitive alphabetical order
-2. Test 2..
+2. Test `clear()`from GameList
+   * all games in the list are removed, returns an empty list
+   * when list is empty, returns empty list
+3. Test `count()`from GameList
+   * counts number of names in list, returns the correct number
+   * when list is empty, returns 0
+4. Test `saveGame()`from GameList
+   * games are saved to a file in order of getGameNames()
+   * when a file already exists, file should overwrite
+   * when the list is empty, empty file should be made
+5. Test `addToList()` from GameList
+    * single name is added to list
+    * if '1 name' selected, adds first game from current filtered list
+    * if range '1-5', adds games 1 - 5 to list
+    * if range goes outside filtered list, add start of range to end of list
+    * if all games selected, add all to list
+    * if string invalid, throw IllegalArgumentException
+6. Test `removeFromList()` from GameList
+    * single name is specified, remove from list
+    * if '1 name' selected, remove first game from current filtered list
+    * if range '1-5', remove games 1 - 5 from current list
+    * if all games selected, remove all from list
+    * throw IllegalArgumentException if out of range or name doesnt exist
 
 
 
