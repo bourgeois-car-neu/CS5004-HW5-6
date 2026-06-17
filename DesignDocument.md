@@ -172,7 +172,10 @@ Write a test (in english) that you can picture for the class diagram you have cr
 
 You should feel free to number your brainstorm. 
 
-1. Test 1..
+1. Test `getGameList()`from GameList 
+   * empty list returns empty list
+   * adding names returns the list in ascending & alphabetical order
+   * names with mixed cases are added in case insensitive alphabetical order
 2. Test 2..
 
 
