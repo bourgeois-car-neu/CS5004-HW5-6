@@ -45,10 +45,11 @@ public class GameList implements IGameList {
     }
 
     @Override
-    public void addToList(String str, Stream<BoardGame> filtered) throws IllegalArgumentException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addToList'");
+    public void addToList(String str, Stream<BoardGame> filtered) {
+        filtered.filter(name -> name.getName().equals(str)).findFirst()
+                .ifPresent(game -> games.add(game));
     }
+
 
     @Override
     public void removeFromList(String str) throws IllegalArgumentException {
