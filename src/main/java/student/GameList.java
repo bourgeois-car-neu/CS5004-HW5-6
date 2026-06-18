@@ -2,20 +2,28 @@ package student;
 
 import java.util.List;
 import java.util.stream.Stream;
+import java.util.HashSet;
+
 
 public class GameList implements IGameList {
+    /** collection type, object type, variable. */
+    private HashSet<BoardGame> games;
+
 
     /**
      * Constructor for the GameList.
      */
     public GameList() {
-        throw new UnsupportedOperationException("Unimplemented constructor 'GameList'");
+        games = new HashSet<>();
     }
 
+    /**
+     * gets a list of game names.
+     * @return list.
+     */
     @Override
     public List<String> getGameNames() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getGameNames'");
+       return List.of();
     }
 
     @Override
