@@ -55,6 +55,11 @@ public class GameList implements IGameList {
         } else if (str.matches("\\d+")) {
             int index = Integer.parseInt(str);
             filtered.skip(index - 1).findFirst().ifPresent(game -> games.add(game));
+        } else if (str.contains("-")) {
+            String[] parts = str.split("-");
+            int start = Integer.parseInt(parts[0]);
+            int end = Integer.parseInt(parts[1]);
+            filtered.skip(start - 1).limit(end - start + 1).forEach(game -> games.add(game));
         } else {
             filtered.filter(name -> name.getName().equals(str)).findFirst()
                     .ifPresent(game -> games.add(game));
