@@ -63,4 +63,14 @@ public class TestGameList {
         list.addToList("1", filtered);
         assertEquals(List.of("Monopoly"), list.getGameNames());
     }
+
+    @Test
+    public void testAddToListRange() {
+        BoardGame game1 = new BoardGame("Monopoly", 1, 0, 0, 0, 0, 0.0, 0, 0.0, 0);
+        BoardGame game2 = new BoardGame("Chess", 2, 0, 0, 0, 0, 0.0, 0, 0.0, 0);
+        BoardGame game3 = new BoardGame("Azul", 3, 0, 0, 0, 0, 0.0, 0, 0.0, 0);
+        Stream<BoardGame> filtered = Stream.of(game1, game2, game3);
+        list.addToList("1-2", filtered);
+        assertEquals(List.of("Chess", "Monopoly"), list.getGameNames());
+    }
 }
