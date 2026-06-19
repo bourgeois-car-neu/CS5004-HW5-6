@@ -54,6 +54,9 @@ public class TestGameList {
         assertEquals(List.of("Chess"), list.getGameNames());
     }
 
+    /**
+     * test addToList() for number selected
+     */
     @Test
     public void testAddToListNumber() {
         BoardGame game1 = new BoardGame("Monopoly", 1, 0, 0, 0, 0, 0.0, 0, 0.0, 0);
@@ -64,6 +67,9 @@ public class TestGameList {
         assertEquals(List.of("Monopoly"), list.getGameNames());
     }
 
+    /**
+     * test addToList() for range.
+     */
     @Test
     public void testAddToListRange() {
         BoardGame game1 = new BoardGame("Monopoly", 1, 0, 0, 0, 0, 0.0, 0, 0.0, 0);
@@ -72,5 +78,18 @@ public class TestGameList {
         Stream<BoardGame> filtered = Stream.of(game1, game2, game3);
         list.addToList("1-2", filtered);
         assertEquals(List.of("Chess", "Monopoly"), list.getGameNames());
+    }
+
+    /**
+     * test addToList() for range outside list.
+     */
+    @Test
+    public void testAddToListOutsideRange() {
+        BoardGame game1 = new BoardGame("Monopoly", 1, 0, 0, 0, 0, 0.0, 0, 0.0, 0);
+        BoardGame game2 = new BoardGame("Chess", 2, 0, 0, 0, 0, 0.0, 0, 0.0, 0);
+        BoardGame game3 = new BoardGame("Azul", 3, 0, 0, 0, 0, 0.0, 0, 0.0, 0);
+        Stream<BoardGame> filtered = Stream.of(game1, game2, game3);
+        list.addToList("1-5", filtered);
+        assertEquals(List.of("Azul", "Chess", "Monopoly"), list.getGameNames());
     }
 }
