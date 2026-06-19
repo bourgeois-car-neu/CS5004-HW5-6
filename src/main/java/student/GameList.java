@@ -26,6 +26,7 @@ public class GameList implements IGameList {
     public List<String> getGameNames() {
         return games.stream()
                 .map(game -> game.getName())
+                .sorted(String.CASE_INSENSITIVE_ORDER)
                 .collect(Collectors.toList());
     }
 
@@ -49,8 +50,12 @@ public class GameList implements IGameList {
 
     @Override
     public void addToList(String str, Stream<BoardGame> filtered) {
-        filtered.filter(name -> name.getName().equals(str)).findFirst()
-                .ifPresent(game -> games.add(game));
+        if (str.equals("all")) {
+            filtered.forEach(game -> games.add(game));
+        } else {
+            filtered.filter(name -> name.getName().equals(str)).findFirst()
+                    .ifPresent(game -> games.add(game));
+        }
     }
 
 
@@ -59,6 +64,4 @@ public class GameList implements IGameList {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'removeFromList'");
     }
-
-
 }
