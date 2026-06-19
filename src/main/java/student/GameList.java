@@ -1,6 +1,7 @@
 package student;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.HashSet;
 
@@ -23,7 +24,9 @@ public class GameList implements IGameList {
      */
     @Override
     public List<String> getGameNames() {
-       return List.of();
+        return games.stream()
+                .map(game -> game.getName())
+                .collect(Collectors.toList());
     }
 
     @Override
