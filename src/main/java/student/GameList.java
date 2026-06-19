@@ -52,6 +52,9 @@ public class GameList implements IGameList {
     public void addToList(String str, Stream<BoardGame> filtered) {
         if (str.equals("all")) {
             filtered.forEach(game -> games.add(game));
+        } else if (str.matches("\\d+")) {
+            int index = Integer.parseInt(str);
+            filtered.skip(index - 1).findFirst().ifPresent(game -> games.add(game));
         } else {
             filtered.filter(name -> name.getName().equals(str)).findFirst()
                     .ifPresent(game -> games.add(game));
