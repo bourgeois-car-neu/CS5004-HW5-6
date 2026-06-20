@@ -44,7 +44,6 @@ public class TestGameList {
         assertEquals(List.of("Azul", "Chess", "Monopoly"), list.getGameNames());
     }
 
-
     /**
      * test addToList() for a single name.
      * should return single name to list.
