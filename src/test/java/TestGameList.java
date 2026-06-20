@@ -144,7 +144,6 @@ public class TestGameList {
     @Test
     public void testCountZero() {
         assertEquals(0, list.count());
-
     }
 
 }
