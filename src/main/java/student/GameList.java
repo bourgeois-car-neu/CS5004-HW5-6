@@ -35,6 +35,10 @@ public class GameList implements IGameList {
        games.clear();
     }
 
+    /**
+     * counts size of list.
+     * @return size of list as int.
+     */
     @Override
     public int count() {
        return games.size();
