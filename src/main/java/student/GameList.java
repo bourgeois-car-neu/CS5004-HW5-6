@@ -1,5 +1,8 @@
 package student;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -44,12 +47,25 @@ public class GameList implements IGameList {
        return games.size();
     }
 
+    /**
+     * save list of games to a new file
+     * @param filename The name of the file to save the list to.
+     */
     @Override
     public void saveGame(String filename) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'saveGame'");
+        try {
+            Files.write(Path.of(filename), getGameNames());
+        } catch (IOException error) {
+            throw new RuntimeException("error finding file");
+        }
     }
 
+    /**
+     * add game to list.
+     * adds either single name, name from filtered list, range of names, all names, or error if invalid.
+     * @param str      the string to parse and add games to the list.
+     * @param filtered the filtered list to use as a basis for adding.
+     */
     @Override
     public void addToList(String str, Stream<BoardGame> filtered) {
         if (str.equals("all")) {
