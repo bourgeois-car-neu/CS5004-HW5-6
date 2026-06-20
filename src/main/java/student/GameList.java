@@ -37,8 +37,7 @@ public class GameList implements IGameList {
 
     @Override
     public int count() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'count'");
+       return games.size();
     }
 
     @Override
