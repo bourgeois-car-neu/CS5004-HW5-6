@@ -92,4 +92,16 @@ public class TestGameList {
         list.addToList("1-5", filtered);
         assertEquals(List.of("Azul", "Chess", "Monopoly"), list.getGameNames());
     }
+
+    /**
+     * test addToList() for invalid String.
+     */
+    @Test
+    public void testAddToListInvalid() {
+        BoardGame game = new BoardGame("Monopoly", 1, 0, 0, 0, 0, 0.0, 0, 0.0, 0);
+        Stream<BoardGame> filtered = Stream.of(game);
+        assertThrows(IllegalArgumentException.class, () -> list.addToList("invalid", filtered));
+
+    }
+
 }
