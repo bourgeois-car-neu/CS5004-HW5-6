@@ -61,8 +61,8 @@ public class GameList implements IGameList {
             int end = Integer.parseInt(parts[1]);
             filtered.skip(start - 1).limit(end - start + 1).forEach(game -> games.add(game));
         } else {
-            filtered.filter(name -> name.getName().equals(str)).findFirst()
-                    .ifPresent(game -> games.add(game));
+            BoardGame found = filtered.filter(name -> name.getName().equals(str)).findFirst()
+                    .orElseThrow(() -> new IllegalArgumentException("game not found")); games.add(found);
         }
     }
 
