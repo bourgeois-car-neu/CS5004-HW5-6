@@ -137,4 +137,14 @@ public class TestGameList {
         assertEquals(3, list.count());
     }
 
+    /**
+     * test count() for the list of 0 games.
+     * should return 0.
+     */
+    @Test
+    public void testCountZero() {
+        assertEquals(0, list.count());
+
+    }
+
 }
