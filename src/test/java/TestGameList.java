@@ -22,6 +22,7 @@ public class TestGameList {
 
     /**
      * test getGameNames() for empty list.
+     * should return empty list.
      */
     @Test
     public void testGetGameNamesEmpty() {
@@ -31,6 +32,7 @@ public class TestGameList {
     /**
      * test getGameNames() for ascending alphabetical order.
      * simultaneously tests addToList() for "all".
+     * should return list in alphabetical order.
      */
     @Test
     public void testGetGameNamesAscendAlphaOrder() {
@@ -45,6 +47,7 @@ public class TestGameList {
 
     /**
      * test addToList() for a single name.
+     * should return single name to list.
      */
     @Test
     public void testAddToListSingle() {
@@ -56,6 +59,7 @@ public class TestGameList {
 
     /**
      * test addToList() for number selected.
+     * should return 1st element in list.
      */
     @Test
     public void testAddToListNumber() {
@@ -69,6 +73,7 @@ public class TestGameList {
 
     /**
      * test addToList() for range.
+     * should return range of elements in list.
      */
     @Test
     public void testAddToListRange() {
@@ -82,6 +87,7 @@ public class TestGameList {
 
     /**
      * test addToList() for range outside list.
+     * should return 3 elements if range is 1-5.
      */
     @Test
     public void testAddToListOutsideRange() {
@@ -95,6 +101,7 @@ public class TestGameList {
 
     /**
      * test addToList() for invalid String.
+     * should return error.
      */
     @Test
     public void testAddToListInvalid() {
@@ -105,6 +112,7 @@ public class TestGameList {
 
     /**
      * test clear() for all games in list.
+     * should return empty list.
      */
     @Test
     public void testClear() {
@@ -113,6 +121,20 @@ public class TestGameList {
         list.addToList("Monopoly", filtered);
         list.clear();
         assertEquals(List.of(), list.getGameNames());
+    }
+
+    /**
+     * test count() for the list of games.
+     * should return the number of elements in the list.
+     */
+    @Test
+    public void testCount() {
+        BoardGame game1 = new BoardGame("Monopoly", 1, 0, 0, 0, 0, 0.0, 0, 0.0, 0);
+        BoardGame game2 = new BoardGame("Chess", 2, 0, 0, 0, 0, 0.0, 0, 0.0, 0);
+        BoardGame game3 = new BoardGame("Azul", 3, 0, 0, 0, 0, 0.0, 0, 0.0, 0);
+        Stream<BoardGame> filtered = Stream.of(game1, game2, game3);
+        list.addToList("1-3", filtered);
+        assertEquals(3, list.count());
     }
 
 }
