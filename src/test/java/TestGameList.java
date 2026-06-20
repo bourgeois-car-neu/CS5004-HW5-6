@@ -1,6 +1,9 @@
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.*;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 import student.GameList;
 import student.IGameList;
@@ -143,6 +146,22 @@ public class TestGameList {
     @Test
     public void testCountZero() {
         assertEquals(0, list.count());
+    }
+
+    /**
+     * test saveGame() for the list of games.
+     * should write to new file.
+     */
+    @Test
+    public void testSaveGame() throws IOException {
+        BoardGame game1 = new BoardGame("Monopoly", 1, 0, 0, 0, 0, 0.0, 0, 0.0, 0);
+        BoardGame game2 = new BoardGame("Chess", 2, 0, 0, 0, 0, 0.0, 0, 0.0, 0);
+        BoardGame game3 = new BoardGame("Azul", 3, 0, 0, 0, 0, 0.0, 0, 0.0, 0);
+        Stream<BoardGame> filtered = Stream.of(game1, game2, game3);
+        list.addToList("1-3", filtered);
+        list.saveGame("testfile.txt");
+        List<String> lines = Files.readAllLines(Path.of("testfile.txt"));
+        assertEquals(list.getGameNames(), lines);
     }
 
 }
