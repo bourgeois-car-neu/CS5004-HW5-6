@@ -55,7 +55,7 @@ public class TestGameList {
     }
 
     /**
-     * test addToList() for number selected
+     * test addToList() for number selected.
      */
     @Test
     public void testAddToListNumber() {
@@ -101,7 +101,18 @@ public class TestGameList {
         BoardGame game = new BoardGame("Monopoly", 1, 0, 0, 0, 0, 0.0, 0, 0.0, 0);
         Stream<BoardGame> filtered = Stream.of(game);
         assertThrows(IllegalArgumentException.class, () -> list.addToList("invalid", filtered));
+    }
 
+    /**
+     * test clear() for all games in list.
+     */
+    @Test
+    public void testClear() {
+        BoardGame game = new BoardGame("Monopoly", 1, 0, 0, 0, 0, 0.0, 0, 0.0, 0);
+        Stream<BoardGame> filtered = Stream.of(game);
+        list.addToList("Monopoly", filtered);
+        list.clear();
+        assertEquals(List.of(), list.getGameNames());
     }
 
 }
