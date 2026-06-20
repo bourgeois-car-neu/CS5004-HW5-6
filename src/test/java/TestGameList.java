@@ -183,4 +183,14 @@ public class TestGameList {
         assertEquals(list.getGameNames(), lines);
     }
 
+    /**
+     * test saveGame() for empty list of games.
+     * should create a new file.
+     */
+    @Test
+    public void testSaveGameEmpty() throws IOException {
+        list.saveGame("testfile.txt");
+        List<String> lines = Files.readAllLines(Path.of("testfile.txt"));
+        assertEquals(List.of(), lines);
+    }
 }
