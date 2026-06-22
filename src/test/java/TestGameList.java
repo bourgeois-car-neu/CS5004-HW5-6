@@ -193,4 +193,19 @@ public class TestGameList {
         List<String> lines = Files.readAllLines(Path.of("testfile.txt"));
         assertEquals(List.of(), lines);
     }
+
+    /**
+     * test removeFromList() for single name.
+     */
+    @Test
+    public void testRemoveFromListSingle() throws IOException {
+        BoardGame game1 = new BoardGame("Monopoly", 1, 0, 0, 0, 0, 0.0, 0, 0.0, 0);
+        BoardGame game2 = new BoardGame("Chess", 2, 0, 0, 0, 0, 0.0, 0, 0.0, 0);
+        BoardGame game3 = new BoardGame("Azul", 3, 0, 0, 0, 0, 0.0, 0, 0.0, 0);
+        Stream<BoardGame> filtered = Stream.of(game1, game2, game3);
+        list.addToList("1-3", filtered);
+        list.removeFromList("Azul");
+        assertEquals(List.of("Chess", "Monopoly"), list.getGameNames());
+    }
+
 }
