@@ -253,4 +253,15 @@ public class TestGameList {
         list.removeFromList("all");
         assertEquals(List.of(), list.getGameNames());
     }
+
+    /**
+     * test removeFromList() for invalid String.
+     * should return error.
+     */
+    @Test
+    public void testRemoveFromListInvalid() {
+        BoardGame game = new BoardGame("Monopoly", 1, 0, 0, 0, 0, 0.0, 0, 0.0, 0);
+        Stream<BoardGame> filtered = Stream.of(game);
+        assertThrows(IllegalArgumentException.class, () -> list.removeFromList("invalid"));
+    }
 }
