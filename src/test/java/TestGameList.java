@@ -223,4 +223,19 @@ public class TestGameList {
         list.removeFromList("1-2");
         assertEquals(List.of("Monopoly"), list.getGameNames());
     }
+
+    /**
+     * test removeFromList() for number selected.
+     * should remove first (1) element from the current list.
+     */
+    @Test
+    public void testRemoveFromListNumber() {
+        BoardGame game1 = new BoardGame("Monopoly", 1, 0, 0, 0, 0, 0.0, 0, 0.0, 0);
+        BoardGame game2 = new BoardGame("Chess", 2, 0, 0, 0, 0, 0.0, 0, 0.0, 0);
+        BoardGame game3 = new BoardGame("Azul", 3, 0, 0, 0, 0, 0.0, 0, 0.0, 0);
+        Stream<BoardGame> filtered = Stream.of(game1, game2, game3);
+        list.addToList("1-3", filtered);
+        list.removeFromList("1");
+        assertEquals(List.of("Chess", "Monopoly"), list.getGameNames());
+    }
 }
