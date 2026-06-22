@@ -3,6 +3,7 @@ package student;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -87,10 +88,22 @@ public class GameList implements IGameList {
 
     @Override
     public void removeFromList(String str) throws IllegalArgumentException {
-        BoardGame found = games.stream()
-                .filter(game -> game.getName().equals(str))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Game not found: " + str));
-        games.remove(found);
+        if (str.contains("-")) {
+            List<BoardGame> sortedGames = games.stream()
+                    .sorted(Comparator.comparing(game -> game.getName().toLowerCase()))
+                    .collect(Collectors.toList());
+            String[] parts = str.split("-");
+            int start = Integer.parseInt(parts[0]);
+            int end = Integer.parseInt(parts[1]);
+            List<BoardGame> toRemove = sortedGames.subList(start - 1, end);
+            games.removeAll(toRemove);
+        } else {
+            BoardGame found = games.stream()
+                    .filter(game -> game.getName().equals(str))
+                    .findFirst()
+                    .orElseThrow(() -> new IllegalArgumentException("Game not found: " + str));
+            games.remove(found);
+        }
     }
+
 }
