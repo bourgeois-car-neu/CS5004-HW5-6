@@ -196,6 +196,7 @@ public class TestGameList {
 
     /**
      * test removeFromList() for single name.
+     * should remove a single name from the list.
      */
     @Test
     public void testRemoveFromListSingle() throws IOException {
@@ -208,4 +209,18 @@ public class TestGameList {
         assertEquals(List.of("Chess", "Monopoly"), list.getGameNames());
     }
 
+    /**
+     * test removeFromList() for range.
+     * should remove a range of names from list.
+     */
+    @Test
+    public void testRemoveFromListRange() {
+        BoardGame game1 = new BoardGame("Monopoly", 1, 0, 0, 0, 0, 0.0, 0, 0.0, 0);
+        BoardGame game2 = new BoardGame("Chess", 2, 0, 0, 0, 0, 0.0, 0, 0.0, 0);
+        BoardGame game3 = new BoardGame("Azul", 3, 0, 0, 0, 0, 0.0, 0, 0.0, 0);
+        Stream<BoardGame> filtered = Stream.of(game1, game2, game3);
+        list.addToList("1-3", filtered);
+        list.removeFromList("1-2");
+        assertEquals(List.of("Monopoly"), list.getGameNames());
+    }
 }
