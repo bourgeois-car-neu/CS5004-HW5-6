@@ -87,7 +87,10 @@ public class GameList implements IGameList {
 
     @Override
     public void removeFromList(String str) throws IllegalArgumentException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeFromList'");
+        BoardGame found = games.stream()
+                .filter(game -> game.getName().equals(str))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Game not found: " + str));
+        games.remove(found);
     }
 }
