@@ -103,6 +103,8 @@ public class GameList implements IGameList {
                     .collect(Collectors.toList());
             int index = Integer.parseInt(str);
             games.remove(sortedGames.get(index - 1));
+        } else if (str.equals("all")) {
+            clear();
         } else {
             BoardGame found = games.stream()
                     .filter(game -> game.getName().equals(str))
