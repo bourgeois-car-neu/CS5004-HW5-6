@@ -97,6 +97,12 @@ public class GameList implements IGameList {
             int end = Integer.parseInt(parts[1]);
             List<BoardGame> toRemove = sortedGames.subList(start - 1, end);
             games.removeAll(toRemove);
+        } else if (str.matches("\\d+")) {
+            List<BoardGame> sortedGames = games.stream()
+                    .sorted(Comparator.comparing(game -> game.getName().toLowerCase()))
+                    .collect(Collectors.toList());
+            int index = Integer.parseInt(str);
+            games.remove(sortedGames.get(index - 1));
         } else {
             BoardGame found = games.stream()
                     .filter(game -> game.getName().equals(str))
