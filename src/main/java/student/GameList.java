@@ -109,7 +109,7 @@ public class GameList implements IGameList {
             BoardGame found = games.stream()
                     .filter(game -> game.getName().equals(str))
                     .findFirst()
-                    .orElseThrow(() -> new IllegalArgumentException("Game not found: " + str));
+                    .orElseThrow(() -> new IllegalArgumentException("game not found"));
             games.remove(found);
         }
     }
