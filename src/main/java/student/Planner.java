@@ -1,21 +1,25 @@
 package student;
 
 
+import java.util.Comparator;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
 
 public class Planner implements IPlanner {
+    private Set<BoardGame> games;
+    private Set<BoardGame> filtered;
 
     public Planner(Set<BoardGame> games) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented constructor 'Planner'");
+        this.games = games;
+        this.filtered = new HashSet<>(games);
     }
 
     @Override
     public Stream<BoardGame> filter(String filter) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'filter'");
+        return filtered.stream()
+                .sorted(Comparator.comparing(game -> game.getName().toLowerCase()));
     }
 
     @Override
