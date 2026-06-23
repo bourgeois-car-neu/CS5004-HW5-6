@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import student.BoardGame;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -18,6 +19,7 @@ import student.GameData;
  */
 public class TestPlanner {
     static Set<BoardGame> games;
+    private IPlanner planner;
 
     @BeforeAll
     public static void setup() {
@@ -32,6 +34,11 @@ public class TestPlanner {
         games.add(new BoardGame("Tucano", 5, 10, 20, 60, 90, 6.0, 500, 8.0, 2004));
     }
 
+    @BeforeEach
+    public void setupPlanner() {
+        planner = new Planner(games);
+    }
+
      @Test
     public void testFilterName() {
         IPlanner planner = new Planner(games);
@@ -39,6 +46,13 @@ public class TestPlanner {
         assertEquals(1, filtered.size());
         assertEquals("Go", filtered.get(0).getName());
     }
-    
+
+    @Test
+    public void testFilterNameEmpty() {
+        List<BoardGame> filtered = planner.filter("").toList();
+        assertEquals(8, filtered.size());
+        assertEquals("17 days", filtered.get(0).getName());
+        assertEquals("Tucano", filtered.get(7).getName());
+    }
 
 }
