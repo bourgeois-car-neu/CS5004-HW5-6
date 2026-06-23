@@ -4,6 +4,7 @@ package student;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
@@ -18,6 +19,8 @@ public class Planner implements IPlanner {
 
     @Override
     public Stream<BoardGame> filter(String filter) {
+        Stream<BoardGame> result = FilterGames.filter(filter, filtered.stream());
+        filtered = result.collect(Collectors.toSet());
         return filtered.stream()
                 .sorted(Comparator.comparing(game -> game.getName().toLowerCase()));
     }
