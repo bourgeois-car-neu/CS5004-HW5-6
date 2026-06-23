@@ -34,6 +34,9 @@ public class GameList implements IGameList {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * removes all games in the list (clears it out completely).
+     */
     @Override
     public void clear() {
        games.clear();
@@ -63,7 +66,11 @@ public class GameList implements IGameList {
 
     /**
      * add game to list.
-     * adds either single name, name from filtered list, range of names, all names, or error if invalid.
+     * adds either single name.
+     * name from filtered list.
+     * range of names.
+     * all names.
+     * error if invalid.
      * @param str      the string to parse and add games to the list.
      * @param filtered the filtered list to use as a basis for adding.
      */
@@ -86,6 +93,16 @@ public class GameList implements IGameList {
     }
 
 
+    /**
+     * removes a game or games from the list.
+     * either single name.
+     * name from filtered list.
+     * range of names.
+     * all names.
+     * error if invalid.
+     * @param str The string to parse and remove games from the list.
+     * @throws IllegalArgumentException
+     */
     @Override
     public void removeFromList(String str) throws IllegalArgumentException {
         if (str.contains("-")) {
