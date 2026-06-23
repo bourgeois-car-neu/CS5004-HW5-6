@@ -172,10 +172,10 @@ Write a test (in english) that you can picture for the class diagram you have cr
 
 You should feel free to number your brainstorm. 
 
+Test for `GameList`
 1. Test `getGameNames()`from GameList 
    * empty list returns empty list
-   * adding names returns the list in ascending & alphabetical order
-   * names with mixed cases are added in case insensitive alphabetical order
+   * returns the list in ascending & alphabetical order
 2. Test `clear()`from GameList
    * all games in the list are removed, returns an empty list
    * when list is empty, returns empty list
@@ -188,7 +188,7 @@ You should feel free to number your brainstorm.
    * when the list is empty, empty file should be made
 5. Test `addToList()` from GameList
     * single name is added to list
-    * if '1 name' selected, adds first game from current filtered list
+    * if '1' selected, adds first game from current filtered list
     * if range '1-5', adds games 1 - 5 to list
     * if range goes outside filtered list, add start of range to end of list
     * if all games selected, add all to list
@@ -199,6 +199,21 @@ You should feel free to number your brainstorm.
     * if range '1-5', remove games 1 - 5 from current list
     * if all games selected, remove all from list
     * throw IllegalArgumentException if out of range or name doesnt exist
+Test for `Planner`
+1. Test `filter(String filter)`
+   * returns games sorted by name ascending
+   * when no game match, returns empty stream
+   * empty string returns all games 
+2. Test `filter(String filter, GameData sortOn)`
+   * returns games sorted by a specified column ascending
+   * returns empty stream when no games match
+3. Test `filter(String filter, GameData sortOn, boolean ascending)`
+   returns games sorted ascending
+   * returns games sorted descending
+   * when two filters applied, sorted accordingly
+   * empty string returns current filtered sorted by specific column
+4. Test `reset()`
+   * clears the list returns full game list
 
 
 
