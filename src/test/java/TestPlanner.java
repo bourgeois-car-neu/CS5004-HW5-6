@@ -55,4 +55,10 @@ public class TestPlanner {
         assertEquals("Tucano", filtered.get(7).getName());
     }
 
+    @Test
+    public void testFilterNoMatch() {
+        List<BoardGame> result = planner.filter("name == InvalidGame").toList();
+        assertEquals(0, result.size());
+    }
+
 }
