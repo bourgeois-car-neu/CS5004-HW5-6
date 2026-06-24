@@ -28,6 +28,13 @@ public class FilterGames {
         String value = parts[1];
         if (column == GameData.NAME) {
             return filteredGames.filter(game -> game.getName().equalsIgnoreCase(value));
+        } else if (column == GameData.MIN_PLAYERS) {
+            int numValue = Integer.parseInt(value);
+            return filteredGames.filter(game -> {
+                if (operator == Operations.GREATER_THAN) return game.getMinPlayers() > numValue;
+                if (operator == Operations.LESS_THAN) return game.getMinPlayers() < numValue;
+                return true;
+            });
         }
         return filteredGames;
     }
