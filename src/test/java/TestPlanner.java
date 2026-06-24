@@ -39,6 +39,10 @@ public class TestPlanner {
         planner = new Planner(games);
     }
 
+    /**
+     * test filter(String filter) by name.
+     * should return games that match name "Go".
+     */
      @Test
     public void testFilterName() {
         IPlanner planner = new Planner(games);
@@ -47,6 +51,10 @@ public class TestPlanner {
         assertEquals("Go", filtered.get(0).getName());
     }
 
+    /**
+     * test filter(String filter) for empty string.
+     * should return all games.
+     */
     @Test
     public void testFilterNameEmpty() {
         List<BoardGame> filtered = planner.filter("").toList();
@@ -55,6 +63,10 @@ public class TestPlanner {
         assertEquals("Tucano", filtered.get(7).getName());
     }
 
+    /**
+     * test filter(String filter) for no match.
+     * should return empty.
+     */
     @Test
     public void testFilterNoMatch() {
         List<BoardGame> result = planner.filter("name == InvalidGame").toList();
@@ -62,13 +74,24 @@ public class TestPlanner {
     }
 
     /**
-     * test filter() sortOn for column.
+     * test filter(String filter, GameData sortOn) for column.
      * should return games sorted by a specified column ascending.
      * sort by min players.
      */
     @Test
-    public void testFilterColumn() {
+    public void testFilterSortOn() {
         List<BoardGame> result = planner.filter("", GameData.MIN_PLAYERS).toList();
         assertEquals(1, result.get(0).getMinPlayers());
+    }
+
+    /**
+     * test filter(String filter, GameData sortOn, boolean ascending) for descending.
+     * should return games sorted by a specified column descending.
+     * sort by min players descending.
+     */
+    @Test
+    public void testFilterDescending() {
+        List<BoardGame> result = planner.filter("", GameData.MIN_PLAYERS, false).toList();
+        assertEquals(10, result.get(0).getMinPlayers());
     }
 }
