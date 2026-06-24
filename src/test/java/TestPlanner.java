@@ -94,4 +94,28 @@ public class TestPlanner {
         List<BoardGame> result = planner.filter("", GameData.MIN_PLAYERS, false).toList();
         assertEquals(10, result.get(0).getMinPlayers());
     }
+
+    /**
+     * test filter(String filter, GameData sortOn, boolean ascending) for multiple filters.
+     * should return games sorted by a specified filters.
+     * sort by minplayers>2 and maxplayers<10.
+     */
+    @Test
+    public void testFilterMultiple() {
+        planner.filter("minPlayers>2", GameData.NAME);
+        List<BoardGame> result = planner.filter("maxPlayers<10", GameData.NAME).toList();
+        assertEquals("GoRami", result.get(0).getName());
+    }
+
+    /**
+     * test reset().
+     * should return the list of games with no filter.
+     */
+    @Test
+    public void testReset() {
+        planner.filter("minPlayers>2", GameData.NAME);
+        planner.reset();
+        List<BoardGame> result = planner.filter("", GameData.NAME).toList();
+        assertEquals("17 days", result.get(0).getName());
+    }
 }
