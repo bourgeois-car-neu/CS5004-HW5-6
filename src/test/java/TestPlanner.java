@@ -13,9 +13,9 @@ import student.GameData;
 
 /**
  * JUnit test for the Planner class.
- * 
+ *
  * Just a sample test to get you started, also using
- * setup to help out. 
+ * setup to help out.
  */
 public class TestPlanner {
     static Set<BoardGame> games;
@@ -61,4 +61,14 @@ public class TestPlanner {
         assertEquals(0, result.size());
     }
 
+    /**
+     * test filter() sortOn for column.
+     * should return games sorted by a specified column ascending.
+     * sort by min players.
+     */
+    @Test
+    public void testFilterColumn() {
+        List<BoardGame> result = planner.filter("", GameData.MIN_PLAYERS).toList();
+        assertEquals(1, result.get(0).getMinPlayers());
+    }
 }
