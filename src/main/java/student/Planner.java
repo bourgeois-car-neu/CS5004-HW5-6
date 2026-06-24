@@ -27,14 +27,14 @@ public class Planner implements IPlanner {
 
     @Override
     public Stream<BoardGame> filter(String filter, GameData sortOn) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'filter'");
+        return filter(filter, sortOn, true);
     }
 
     @Override
     public Stream<BoardGame> filter(String filter, GameData sortOn, boolean ascending) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'filter'");
+        Stream<BoardGame> result = FilterGames.filter(filter, filtered.stream());
+        filtered = result.collect(Collectors.toSet());
+        return SortGame.sortOn(filtered.stream(), sortOn, ascending);
     }
 
     @Override
@@ -42,6 +42,5 @@ public class Planner implements IPlanner {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'reset'");
     }
-
 
 }
