@@ -3,7 +3,7 @@ package student;
 import java.util.Comparator;
 import java.util.stream.Stream;
 
-public class SortGame {
+public final class SortGame {
     private SortGame() {
     }
 

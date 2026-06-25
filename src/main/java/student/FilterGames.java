@@ -8,7 +8,7 @@ import java.util.stream.Stream;
  * FilterGames dependency on Operations
  * FilterGames dependency on Planner
  */
-public class FilterGames {
+public final class FilterGames {
     private FilterGames() {
     }
 
@@ -40,8 +40,12 @@ public class FilterGames {
         } else if (column == GameData.MIN_PLAYERS) {
             int numValue = Integer.parseInt(value);
             return filteredGames.filter(game -> {
-                if (operator == Operations.GREATER_THAN) return game.getMinPlayers() > numValue;
-                if (operator == Operations.LESS_THAN) return game.getMinPlayers() < numValue;
+                if (operator == Operations.GREATER_THAN) {
+                    return game.getMinPlayers() > numValue;
+                }
+                if (operator == Operations.LESS_THAN) {
+                    return game.getMinPlayers() < numValue;
+                }
                 return true;
             });
         } else if (column == GameData.MAX_PLAYERS) {

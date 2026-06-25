@@ -14,6 +14,10 @@ public class Planner implements IPlanner {
     /** current filtered catalog of games. */
     private Set<BoardGame> filtered;
 
+    /**
+     * turn set of BoardGames into HashSet.
+     * @param games set of BoardGames.
+     */
     public Planner(Set<BoardGame> games) {
         this.games = games;
         this.filtered = new HashSet<>(games);
