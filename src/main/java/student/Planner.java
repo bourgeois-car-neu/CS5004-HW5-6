@@ -9,7 +9,9 @@ import java.util.stream.Stream;
 
 
 public class Planner implements IPlanner {
+    /** full catalog of games. */
     private Set<BoardGame> games;
+    /** current filtered catalog of games. */
     private Set<BoardGame> filtered;
 
     public Planner(Set<BoardGame> games) {

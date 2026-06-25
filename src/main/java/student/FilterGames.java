@@ -9,6 +9,15 @@ import java.util.stream.Stream;
  * FilterGames dependency on Planner
  */
 public class FilterGames {
+    private FilterGames() {
+    }
+
+    /**
+     * filters stream of BoardGame based on filter String.
+     * @param filter filter string to apply.
+     * @param filteredGames stream of games to filter.
+     * @return stream of games that match filter.
+     */
     public static Stream<BoardGame> filter(String filter, Stream<BoardGame> filteredGames) {
         Operations operator = Operations.getOperatorFromStr(filter);
         if (operator == null) {
@@ -33,6 +42,17 @@ public class FilterGames {
             return filteredGames.filter(game -> {
                 if (operator == Operations.GREATER_THAN) return game.getMinPlayers() > numValue;
                 if (operator == Operations.LESS_THAN) return game.getMinPlayers() < numValue;
+                return true;
+            });
+        } else if (column == GameData.MAX_PLAYERS) {
+            int numValue = Integer.parseInt(value);
+            return filteredGames.filter(game -> {
+                if (operator == Operations.GREATER_THAN) {
+                    return game.getMaxPlayers() > numValue;
+                }
+                if (operator == Operations.LESS_THAN) {
+                    return game.getMaxPlayers() < numValue;
+                }
                 return true;
             });
         }

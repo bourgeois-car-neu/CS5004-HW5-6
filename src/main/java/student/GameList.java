@@ -52,7 +52,7 @@ public class GameList implements IGameList {
     }
 
     /**
-     * save list of games to a new file
+     * save list of games to a new file.
      * @param filename The name of the file to save the list to.
      */
     @Override

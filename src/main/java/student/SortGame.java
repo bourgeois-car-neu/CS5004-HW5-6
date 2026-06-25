@@ -4,6 +4,16 @@ import java.util.Comparator;
 import java.util.stream.Stream;
 
 public class SortGame {
+    private SortGame() {
+    }
+
+    /**
+     * sorts stream of BoardGame based on GameData.
+     * @param games stream of BoardGames.
+     * @param sortOn GameData for sorting.
+     * @param ascending default sort by ascending.
+     * @return stream of BoardGame based on sorting type.
+     */
     public static Stream<BoardGame> sortOn(Stream<BoardGame> games, GameData sortOn, boolean ascending) {
         Comparator<BoardGame> comparator;
         if (sortOn == GameData.NAME) {
