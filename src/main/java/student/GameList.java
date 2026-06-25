@@ -58,9 +58,13 @@ public class GameList implements IGameList {
     @Override
     public void saveGame(String filename) {
         try {
-            Files.write(Path.of(filename), getGameNames());
+            Path path = Path.of(filename);
+            if (path.getParent() != null) {
+                Files.createDirectories(path.getParent());
+            }
+            Files.write(path, getGameNames());
         } catch (IOException error) {
-            throw new RuntimeException("error finding file");
+            throw new RuntimeException("error saving file: " + error.getMessage());
         }
     }
 
