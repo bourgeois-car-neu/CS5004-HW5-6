@@ -1,5 +1,5 @@
-Name:
-Github Repository:
+Name: Caroline Bourgeois
+Github Repository: https://github.com/bourgeois-car-neu/CS5004-HW5-6.git
 
 How many hours did it take you to complete this assignment (estimate)?
 
