@@ -12,6 +12,24 @@ public final class FilterGames {
     private FilterGames() {
     }
 
+    private static boolean compareNumbers(double gameValue, Operations operator, double filterValue) {
+        switch (operator) {
+            case GREATER_THAN:
+                return gameValue > filterValue;
+            case GREATER_THAN_EQUALS:
+                return gameValue >= filterValue;
+            case LESS_THAN:
+                return gameValue < filterValue;
+            case LESS_THAN_EQUALS:
+                return gameValue <= filterValue;
+            case EQUALS:
+                return gameValue == filterValue;
+            case NOT_EQUALS:
+                return gameValue != filterValue;
+            default:
+                return false;
+        }
+    }
     /**
      * filters stream of BoardGame based on filter String.
      * @param filter filter string to apply.
@@ -23,8 +41,8 @@ public final class FilterGames {
         if (operator == null) {
             return filteredGames;
         }
-        filter = filter.replaceAll(" ", "");
-        String[] parts = filter.split(operator.getOperator());
+        filter = filter.strip();
+        String[] parts = filter.split("\\s*" + operator.getOperator() + "\\s*");
         if (parts.length != 2) {
             return filteredGames;
         }
@@ -36,30 +54,41 @@ public final class FilterGames {
         }
         String value = parts[1];
         if (column == GameData.NAME) {
-            return filteredGames.filter(game -> game.getName().equalsIgnoreCase(value));
+            return filteredGames.filter(game -> {
+                if (operator == Operations.EQUALS) {
+                    return game.getName().equalsIgnoreCase(value);
+                }
+                if (operator == Operations.CONTAINS) {
+                    return game.getName().toLowerCase().contains(value.toLowerCase());
+                }
+                return true;
+            });
         } else if (column == GameData.MIN_PLAYERS) {
-            int numValue = Integer.parseInt(value);
-            return filteredGames.filter(game -> {
-                if (operator == Operations.GREATER_THAN) {
-                    return game.getMinPlayers() > numValue;
-                }
-                if (operator == Operations.LESS_THAN) {
-                    return game.getMinPlayers() < numValue;
-                }
-                return true;
-            });
+            double numValue = Double.parseDouble(value);
+            return filteredGames.filter(game -> compareNumbers(game.getMinPlayers(), operator, numValue));
         } else if (column == GameData.MAX_PLAYERS) {
-            int numValue = Integer.parseInt(value);
-            return filteredGames.filter(game -> {
-                if (operator == Operations.GREATER_THAN) {
-                    return game.getMaxPlayers() > numValue;
-                }
-                if (operator == Operations.LESS_THAN) {
-                    return game.getMaxPlayers() < numValue;
-                }
-                return true;
-            });
+            double numValue = Double.parseDouble(value);
+            return filteredGames.filter(game -> compareNumbers(game.getMaxPlayers(), operator, numValue));
+        } else if (column == GameData.MIN_TIME) {
+            double numValue = Double.parseDouble(value);
+            return filteredGames.filter(game -> compareNumbers(game.getMinPlayTime(), operator, numValue));
+        } else if (column == GameData.MAX_TIME) {
+            double numValue = Double.parseDouble(value);
+            return filteredGames.filter(game -> compareNumbers(game.getMaxPlayTime(), operator, numValue));
+        } else if (column == GameData.RATING) {
+            double numValue = Double.parseDouble(value);
+            return filteredGames.filter(game -> compareNumbers(game.getRating(), operator, numValue));
+        } else if (column == GameData.DIFFICULTY) {
+            double numValue = Double.parseDouble(value);
+            return filteredGames.filter(game -> compareNumbers(game.getDifficulty(), operator, numValue));
+        } else if (column == GameData.RANK) {
+            double numValue = Double.parseDouble(value);
+            return filteredGames.filter(game -> compareNumbers(game.getRank(), operator, numValue));
+        } else if (column == GameData.YEAR) {
+            double numValue = Double.parseDouble(value);
+            return filteredGames.filter(game -> compareNumbers(game.getYearPublished(), operator, numValue));
         }
         return filteredGames;
     }
 }
+
