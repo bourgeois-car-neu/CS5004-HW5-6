@@ -206,9 +206,7 @@ Test for `Planner`
    * empty string returns all games 
 2. Test `filter(String filter, GameData sortOn)`
    * returns games sorted by a specified column ascending
-   * returns empty stream when no games match
 3. Test `filter(String filter, GameData sortOn, boolean ascending)`
-   returns games sorted ascending
    * returns games sorted descending
    * when two filters applied, sorted accordingly
    * empty string returns current filtered sorted by specific column
@@ -227,7 +225,34 @@ For the final design, you just need to do a single diagram that includes both th
 > [!WARNING]
 > If you resubmit your assignment for manual grading, this is a section that often needs updating. You should double check with every resubmit to make sure it is up to date.
 
-
+```mermaid
+---
+title: BoardGame
+---
+classDiagram
+    direction TB
+    BGArenaPlanner ..> GameLoader
+    BGArenaPlanner ..> ConsoleApp
+    
+    ConsoleApp ..> IGameList
+    ConsoleApp ..> IPlanner
+    
+    GameList ..|> IGameList
+    Planner ..|> IPlanner
+    
+    Planner ..> FilterGames
+    Planner ..> SortGames
+    
+    FilterGames ..> GameData
+    FilterGames ..> Operations
+    SortGames ..> GameData
+    
+    GameLoader ..> GameData
+    Planner ..> BoardGame
+    GameList ..> BoardGame
+    FilterGames ..> BoardGame
+    SortGames ..> BoardGame
+```
 
 
 
