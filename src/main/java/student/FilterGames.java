@@ -112,7 +112,13 @@ public final class FilterGames {
                 return true;
             });
         } else if (column == GameData.MIN_PLAYERS) {
+            // converts value from string to double.
             double numValue = Double.parseDouble(value);
+            // for every game in stream...
+            // get each game's MIN_PLAYER.
+            // pass into compareNumbers() along with operator and value user input.
+            // compareNumbers() returns true or false.
+            // .filter() keeps only games that return true.
             return filteredGames.filter(game -> compareNumbers(game.getMinPlayers(), operator, numValue));
         } else if (column == GameData.MAX_PLAYERS) {
             double numValue = Double.parseDouble(value);
