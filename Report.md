@@ -59,19 +59,27 @@ code as it is meant to help you understand some of the concepts.
 7. Rewrite the following as an if else statement inside the empty code block.
     ```java
     switch (ct) {
+                // if cmd_question OR cmd_help
                 case CMD_QUESTION: // same as help
                 case CMD_HELP:
                     processHelp();
                     break;
+                // if invalid...
                 case INVALID:
+                // if not listed above...
                 default:
                     CONSOLE.printf("%s%n", ConsoleText.INVALID);
             }
     ``` 
 
     ```java
-    // your code here, don't forget the class name that is dropped in the switch block..
-    
+    // your code here, don't forget the class name that is dropped in the switch block. 
+   if (ct == CMD_QUESTION || ct == CMD_HELP) {
+        processHelp();
+   } else {
+        // covers both default & INVALID
+        CONSOLE.printf("%s%n", ConsoleText.INVALID);
+   }
     ```
 
 ## Deeper Thinking
