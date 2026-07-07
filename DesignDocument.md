@@ -241,7 +241,7 @@ classDiagram
     Planner ..|> IPlanner
     
     Planner ..> FilterGames
-    Planner ..> SortGames
+    Planner ..> SortGame
     
     FilterGames ..> GameData
     FilterGames ..> Operations
@@ -251,7 +251,104 @@ classDiagram
     Planner ..> BoardGame
     GameList ..> BoardGame
     FilterGames ..> BoardGame
-    SortGames ..> BoardGame
+    SortGame ..> BoardGame
+
+   class BGArenaPlanner {
+      - DEFAULT_COLLECTION: String = "/collection.csv"
+      - BGArenaPlanner()
+      + main(args: String) void
+   }
+
+   class GameLoader {
+      - DELIMITER: String = ","
+      + loadGamesFile(filename: String) Set<BoardGame>
+      - toBoardGame(line: String, columnMap: Map<GameData, Integer>) BoardGame
+      - processHeader(header: String) Map<GameData, Integer>
+   }
+
+   class ConsoleApp {
+      + ConsoleApp(gameList: IGameList, planner: IPlanner)
+      + start() void
+      - randomNumber() void
+      - processHelp() void
+      - processFilter() void
+      - printFilterStream(games: Stream<BoardGame>, sortON: GameData) void
+      - processListCommands() void
+      - printCurrentList() void
+      - nextCommand() ConsoleText
+      - remainder() String
+      - getInput(format: String, args: Object) String
+      - printOutput(format: String, args: Object) void
+      + toString() String
+      + fromString(str: String) ConsoleText
+   }
+
+   class IGameList {
+      <<interface>>
+      + ADD_ALL: String = "all"
+      + getGameNames() List
+      + count() int
+   }
+
+   class IPlanner {
+      <<interface>>
+      + filter(filter: String) Stream
+      + filter(filter: String sortOn: GameData) Stream
+      + filter(filter: String, sortOn: GameData, ascending: boolean) Stream
+   }
+
+   class GameList {
+      + GameList()
+      + getGameNames() List<String>
+      + clear() void
+      + count() int
+      + saveGame(filename: String) void
+      + addToList(str: String, filtered: Stream<BoardGame>) void
+      + removeFromList(str: String) void
+   }
+
+   class Planner {
+      + Planner(games: Set<BoardGame>)
+      + filter(filter: String) Stream<BoardGame>
+      + filter(filter: String, sortOn: GameData) Stream<BoardGame>
+      + filter(filter: String, sortOn: GameData, ascending: boolean) Stream<BoardGame>
+      + reset() void
+   }
+
+   class FilterGames {
+      + filter(games: Stream<BoardGame>, filter: String) Stream<BoardGame>
+   }
+
+   class SortGame {
+      + sortOn(games: Stream<BoardGame>: String, sortOn: GameData, ascending: boolean) Stream<BoardGame>
+   }
+
+   class GameData {
+      - columnName String
+      - GameData(columnName: String)
+      + getColumnName() String
+      + fromColumnName(columnName: String) GameData
+      + fromString(name: String) GameData
+   }
+
+   class Operations {
+      + operator String
+      - Operations(operator: String) operator
+      + getOperator() String
+      + fromOperator(operator: String) Operations
+      + getOperatorFromStr(str: String) Operations
+   }
+
+   class GameLoader {
+      - GamesLoader()
+      + loadGamesFile(filename: String) Set<BoardGame>
+      - toBoardGame(line: String, columnMap Map<GameData, Integer>) BoardGame
+      - processHeader(header: String) Map<GameData, Integer>
+   }
+
+   class BoardGame {
+      +
+   }
 ```
 
 
