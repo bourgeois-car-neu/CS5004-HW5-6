@@ -96,7 +96,12 @@ the current layout.
 Post a copy of the run with the updated languages below this. Use three back ticks (```) to create a code block. 
 
 ```text
-// your consoles output here
+*******¡Bienvenido al Planificador de Board Game Arena!*******
+
+Una herramienta para ayudar a las personas a planificar qué juegos 
+quieren jugar en Board Game Arena. 
+
+Para comenzar, ingrese su primer comando abajo, o escriba ? o help para ver las opciones de comandos.
 ```
 
 Now, thinking about localization - we have the question of why does it matter? The obvious
@@ -107,3 +112,14 @@ various spoken languages around the world? What about areas with internet access
 
 
 As a reminder, deeper thinking questions are meant to require some research and to be answered in a paragraph for with references. The goal is to open up some of the discussion topics in CS, so you are better informed going into industry. 
+
+There are many reasons for a program to be flexible enough to localize to different languages and cultures. Aside from market share/economic influence, growth potential and internet penetration are other reasons to localize a program to a certain language. Targeting languages in growing economies through early investment can offer potential long term benefits for a company. Tailoring your program for areas with high online presence also helps you reach a wider audience [1]. 
+
+While the top 10 languages for localization cover many of the reasons to localize a program, it's not always as simple as just translating from one language to another. One thing to consider when web translation is the technical and UI experience. Words in some languages like German or French can take up to 50% more space than the English version [2]. This can distrupt the user experience and the overall layout of a web page. Cultural fit and awareness also play a role when considering localization. It's important to take a balanced approach between the original text and it's cultural relivance. Coca-Cola is a great example of successful cultural translation. One of their most impactful marketing campaigns included creating a Chineese slogan, "Delicious Happiness", which captured the brand voice and appealed to the Chineese cultural values [3].
+
+
+[1] Filip Smet, "Most Popular Languages for Translation and Localization," Global Link. Available: https://globallink.transperfect.com/blog/top-10-languages-for-website-translation-and-localization. [Accessed: 20 July. 2026]
+
+[2] Matt Owen, "10 Common Software Localization Mistakes," Phrase. Available: https://phrase.com/blog/posts/10-common-mistakes-in-software-localization/. [Accessed: 20 July. 2026]
+
+[3] mvptranslations, "The Role of Culture in Language and Translation," MVP Translations inc. Available: https://mvptranslations.net/the-role-of-culture-in-language-translation/. [Accessed: 20 July. 2026]
