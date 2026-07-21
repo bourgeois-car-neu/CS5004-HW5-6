@@ -38,7 +38,9 @@ code as it is meant to help you understand some of the concepts.
         } else if (str.contains("=="))...
     ```
     Why would the order in which we checked matter (if it does matter)? Provide examples either way proving your point. 
-
+      * The order that operations is checked does matter.
+      * Example: "min_players >= 4" 
+        * if `contains(">")` is checked first, it would immediately match with GREATER_THAN and not check for the equals part.
 
 
 4. What is the difference between a List and a Set in Java? When would you use one over the other? 
