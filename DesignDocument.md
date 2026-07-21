@@ -231,8 +231,8 @@ title: BoardGame
 ---
 classDiagram
     direction TB
-    BGArenaPlanner ..> GameLoader
-    BGArenaPlanner ..> ConsoleApp
+    BGArenaPlanner ..> GameLoader : uses
+    BGArenaPlanner ..> ConsoleApp : uses
     
     ConsoleApp ..> IGameList
     ConsoleApp ..> IPlanner
@@ -359,3 +359,7 @@ classDiagram
 > The value of reflective writing has been highly researched and documented within computer science, from learning to information to showing higher salaries in the workplace. For this next part, we encourage you to take time, and truly focus on your retrospective.
 
 Take time to reflect on how your design has changed. Write in *prose* (i.e. do not bullet point your answers - it matters in how our brain processes the information). Make sure to include what were some major changes, and why you made them. What did you learn from this process? What would you do differently next time? What was the most challenging part of this process? For most students, it will be a paragraph or two. 
+
+The major updates I made to this program were adding two helper classes, `FilterGames.java` and `SortGame.java`, for `Planner.java`. This is because Planner was responsible for filtering and sorting games, but didn't explain how to do so. I ran into an issue with creating the FilterGames class. I started with an else-if statement for every column in GameData, which not only was way too long, but also repeated a lot of code. To fix this issue, I created a helper method `compareNumbers()` that would be called in `filter()`. The helper method would check if min_player for game 'x' is greater_than (or whatever the operator is) the filter value the user wanted, and return true if the condition was met and that game would stay in the filtered list.
+
+In `GameList.java` I had the games stored in a `HashSet` because the list should have no duplicates and I wanted a list with a fast lookup time. But because HashSet's don't have a particular order, the games only got sorted right before being returned to the caller.  
